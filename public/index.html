@@ -1,9 +1,144 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>DVOPS - OUR GROUP PROJECT Web App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task and Subject Management</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/tasks.js"></script>
 </head>
-<body>
-Welcome to my Resource Management Web Application. In this application, users
-will get to manage resources.
+<body onload="viewTasks()">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">Add Task</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subjectModal">Add Subject</button>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h3>Tasks</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Subject</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskTableContent"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h3>Subjects</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="subjectTableContent"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Task Modal -->
+    <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="taskModalLabel">Add New Task</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="taskName">Task Name</label>
+                            <input type="text" class="form-control" id="taskName" placeholder="Enter task name">
+                        </div>
+                        <div class="form-group">
+                            <label for="taskDescription">Description</label>
+                            <input type="text" class="form-control" id="taskDescription" placeholder="Enter task description">
+                        </div>
+                        <div class="form-group">
+                            <label for="taskSubject">Subject</label>
+                            <input type="text" class="form-control" id="taskSubject" placeholder="Enter subject for task">
+                        </div>
+                        <p align="right" id="taskMessage" class=""></p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addTask()">Add New Task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Subject Modal -->
+    <div class="modal fade" id="subjectModal" tabindex="-1" role="dialog" aria-labelledby="subjectModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="subjectModalLabel">Add New Subject</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="subjectName">Subject Name</label>
+                            <input type="text" class="form-control" id="subjectName" placeholder="Enter subject name">
+                        </div>
+                        <p align="right" id="subjectMessage" class=""></p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addSubject()">Add New Subject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        // Placeholder functions for adding tasks and subjects
+        function addTask() {
+            // Implementation for adding a task
+        }
+ 
+        function addSubject() {
+            // Implementation for adding a subject
+        }
+ 
+        function viewTasks() {
+            // Implementation for retrieving and displaying tasks
+        }
+ 
+        function viewSubjects() {
+            // Implementation for retrieving and displaying subjects
+        }
+    </script>
 </body>
 </html>
+ 
+has context menu
