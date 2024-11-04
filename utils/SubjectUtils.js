@@ -26,11 +26,19 @@ async function writeJSON(object, filename) {
 async function addSubject(req, res) {
     try {
         const name = req.body.name;
-        const description = req.body.description;
 
-        const newSubject = new Subject(name, description);
+        const newSubject = new Subject(name);
         const updatedSubjects = await writeJSON(newSubject, 'utils/subjects.json');
         return res.status(201).json(updatedSubjects);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+async function viewSubjects(req, res) {
+    try {
+        const allSubjects = await readJSON('utils/subjects.json');
+        return res.status(201).json(allSubjects);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -40,4 +48,5 @@ module.exports = {
     readJSON,
     writeJSON,
     addSubject,
+    viewSubjects
 };

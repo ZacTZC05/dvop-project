@@ -9,8 +9,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
 
-const { addSubject } = require('./utils/SubjectUtils');
+const { addSubject, viewSubjects } = require('./utils/SubjectUtils');
 app.post('/add-subject', addSubject);
+app.get('/view-subjects', viewSubjects);
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/public/" + startPage);

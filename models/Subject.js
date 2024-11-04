@@ -1,10 +1,8 @@
 class Subject {
 
-    constructor(name, description) {
+    constructor(name) {
 
         this.name = name;
-
-        this.description = description;
 
         const timestamp = new Date().getTime();
 
