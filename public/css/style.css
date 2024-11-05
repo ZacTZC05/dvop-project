@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.table {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+thead {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.btn-primary {
+    margin: 20px auto;
+    display: block;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-warning {
+    margin-right: 5px;
+}
+
+.btn-danger {
+    margin-left: 5px;
+}
+
+.actions-btns {
+    display: flex;
+    justify-content: center;
+}
+
+#addResourceButtons {
+    text-align: center;
+    margin-top: 30px;
+}

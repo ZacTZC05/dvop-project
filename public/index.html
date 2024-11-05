@@ -13,21 +13,16 @@
 <body onload="viewTasks(); viewSubjects();">
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <img src="images/images.png" alt="Logo">
+            <img src="images/image.png" alt="Logo">
         </div>
-        <div class="row justify-content-center mb-3">
-            <div class="col-md-2">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subjectModal">Add Subject</button>
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">Add Task</button>
-            </div>
-        </div>
-
-        <!-- Subjects Table -->
+        
+        <!-- Subjects Section -->
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <h3>Subjects</h3>
+                <div class="d-flex justify-content-end mb-2">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subjectModal">Add Subject</button>
+                </div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -42,10 +37,13 @@
             </div>
         </div>
 
-        <!-- Tasks Table -->
+        <!-- Tasks Section -->
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <h3>Tasks</h3>
+                <div class="d-flex justify-content-end mb-2">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">Add Task</button>
+                </div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -155,7 +153,7 @@
                             <td>${subject.name}</td>
                             <td>${subject.description}</td>
                             <td>${subject.id}</td>
-                            <td>
+                            <td class="actions-btns">
                                 <button class="btn btn-warning" onclick="editSubject('${subject.id}')">Edit</button>
                                 <button class="btn btn-danger" onclick="deleteSubject('${subject.id}')">Delete</button>
                             </td>
@@ -200,7 +198,7 @@
                         taskContent += `<tr>
                             <td>${task.name}</td>
                             <td>${task.subject}</td>
-                            <td>
+                            <td class="actions-btns">
                                 <button class="btn btn-warning" onclick="editTask('${task.id}')">Edit</button>
                                 <button class="btn btn-danger" onclick="deleteTask('${task.id}')">Delete</button>
                             </td>
