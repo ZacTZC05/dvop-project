@@ -43,7 +43,17 @@ async function addTask(req, res) {
         return res.status(500).json({ message: error.message });
     }
 }
+
+
+async function viewTasks(req, res) {
+    try {
+    const allTasks = await readJSON('utils/tasks.json');
+    return res.status(201).json(allTasks);
+    } catch (error) {
+    return res.status(500).json({ message: error.message });
+    }
+    }
  
 module.exports = {
-    readJSON, writeJSON, addTask  // Export the modified functions
+    readJSON, writeJSON, addTask, viewTasks  // Export the modified functions
 };

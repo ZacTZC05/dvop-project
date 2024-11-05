@@ -1,7 +1,7 @@
 class Task {
-    constructor(name, Subject) {
+    constructor(name, subjectId) { 
         this.name = name;
-        this.Subject = Subject;
+        this.subjectId = subjectId; 
         const timestamp = new Date().getTime();
         const random = Math.floor(Math.random() * 1000);
         this.id = timestamp + "" + random.toString().padStart(3, '0');
