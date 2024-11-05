@@ -6,6 +6,10 @@ var startPage = "index.html";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
+
+const { editTask } = require('./utils/TaskUtil');
+app.put('/edit-task/:id', editTask);
+
 app.get('/', (req, res) => {
 res.sendFile(__dirname + "/public/" + startPage);
 })
@@ -15,4 +19,5 @@ const baseUrl = `http://${address.address == "::" ? 'localhost' :
 address.address}:${address.port}`;
 console.log(`Demo project at: ${baseUrl}`);
 });
+
 module.exports = {app, server}
