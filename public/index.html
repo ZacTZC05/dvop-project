@@ -176,24 +176,7 @@
 
         // Function to view all Tasks
         function viewTasks() {
-            $.ajax({
-                url: '/api/tasks',
-                method: 'GET',
-                success: function (response) {
-                    let taskContent = '';
-                    response.forEach(task => {
-                        taskContent += `<tr>
-                            <td>${task.id}</td>
-                            <td>${task.name}</td>
-                            <td>${task.subject}</td>
-                        </tr>`;
-                    });
-                    $('#taskTableContent').html(taskContent);
-                },
-                error: function (error) {
-                    console.error("Error fetching tasks", error);
-                }
-            });
+        
         }
     </script>
 </body>
