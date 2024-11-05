@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 });
 
 // Endpoint to add a new Subject
-app.post('/api/subjects', async (req, res) => {
+app.post('/subjects', async (req, res) => {
     try {
         const { name, description } = req.body;
         const newSubject = new Subject(name, description);
@@ -29,7 +29,7 @@ app.post('/api/subjects', async (req, res) => {
 });
 
 // Endpoint to view all Subjects
-app.get('/api/subjects', async (req, res) => {
+app.get('/subjects', async (req, res) => {
     try {
         const subjects = await readJSON('utils/subjects.json');
         res.status(200).json(subjects);

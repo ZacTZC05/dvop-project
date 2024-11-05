@@ -25,14 +25,14 @@ async function writeJSON(object, filename) {
 
 async function addSubject(req, res) {
     try {
-        const { name, location, description, owner } = req.body;
+        const { name, description } = req.body;
 
         // Basic validation
-        if (!owner.includes('@') || !owner.includes('.') || description.length < 6) {
+        if ( description.length < 6) {
             return res.status(400).json({ message: 'Validation error' });
         }
 
-        const newSubject = new Subject(name, location);
+        const newSubject = new Subject(name, description);
         const updatedSubjects = await writeJSON(newSubject, 'utils/subjects.json');
         return res.status(201).json(updatedSubjects);
     } catch (error) {
