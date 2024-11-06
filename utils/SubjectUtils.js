@@ -107,4 +107,4 @@ module.exports = {
     deleteSubject,
     addSubject,
     viewSubjects
-};
+}

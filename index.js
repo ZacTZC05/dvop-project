@@ -10,10 +10,10 @@ app.use(bodyParser.json());
 app.use(express.static("./public"));
 
 const { addSubject, viewSubjects, editSubject, deleteSubject } = require('./utils/SubjectUtils');
-app.post('/add-subject', addSubject);
+app.post('/subjects', addSubject);
 app.get('/subjects', viewSubjects);
-app.put('/edit-subject/:id', editSubject);
-app.delete('/delete-subject/:id', deleteSubject);
+app.put('/subjects/:id', editSubject);
+app.delete('/subjects/:id', deleteSubject);
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/public/" + startPage);

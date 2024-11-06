@@ -56,6 +56,10 @@ function deleteSubject(selectedId) {
     };
     request.send();
 }
+$(document).ready(function () {
+    viewSubjects();
+    viewTasks();
+});
 
 // Function to add a new Subject
 function addSubject() {
@@ -69,7 +73,8 @@ function addSubject() {
         data: JSON.stringify({ name, description }),
         success: function (response) {
             $('#subjectMessage').text("Subject added successfully").css("color", "green");
-            viewSubjects(); // Refresh subject list
+            viewSubjects();
+            $('#subjectModal').modal('hide'); // Close modal after adding
         },
         error: function (error) {
             $('#subjectMessage').text("Error adding subject").css("color", "red");
@@ -85,20 +90,81 @@ function viewSubjects() {
         success: function (response) {
             let subjectContent = '';
             response.forEach(subject => {
-                subjectContent += `<tr>
+                subjectContent += `<tr id="subjectRow-${subject.id}">
                     <td>${subject.name}</td>
                     <td>${subject.description}</td>
                     <td>${subject.id}</td>
-                    <td class="actions-btns">
-                        <button class="btn btn-warning" onclick="editSubject('${subject.id}')">Edit</button>
-                        <button class="btn btn-danger" onclick="deleteSubject('${subject.id}')">Delete</button>
-                    </td>
+                    <td id="actions-${subject.id}"></td>
                 </tr>`;
             });
             $('#subjectTableContent').html(subjectContent);
+            response.forEach(subject => {
+                addActionButtons(subject.id, subject.name, subject.description);
+            });
         },
         error: function (error) {
             console.error("Error fetching subjects", error);
         }
     });
 }
+
+// Function to add action buttons
+function addActionButtons(id, name, description) {
+    const editButton = `<button class="btn btn-warning" onclick="openEditSubjectModal('${id}', '${name}', '${description}')">Edit</button>`;
+    const deleteButton = `<button class="btn btn-danger" onclick="openDeleteSubjectModal('${id}', '${name}')">Delete</button>`;
+    $(`#actions-${id}`).html(editButton + deleteButton);
+}
+
+// Function to open edit modal
+function openEditSubjectModal(id, name, description) {
+    $('#editSubjectName').val(name);
+    $('#editSubjectDescription').val(description);
+    $('#editSubjectModal').data('subject-id', id).modal('show');
+}
+
+// Save edited subject
+function saveEditedSubject() {
+    const id = $('#editSubjectModal').data('subject-id');
+    const name = $('#editSubjectName').val();
+    const description = $('#editSubjectDescription').val();
+
+    $.ajax({
+        url: `/subjects/${id}`,
+        method: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify({ name, description }),
+        success: function (response) {
+            $('#editSubjectModal').modal('hide');
+            viewSubjects();
+        },
+        error: function (error) {
+            console.error("Error editing subject", error);
+        }
+    });
+}
+
+// Delete modal
+function openDeleteSubjectModal(id, name) {
+    $('#deleteSubjectName').text(name);
+    $('#deleteSubjectModal').data('subject-id', id).modal('show');
+}
+
+// Confirm delete
+function confirmDeleteSubject() {
+    const id = $('#deleteSubjectModal').data('subject-id');
+
+    $.ajax({
+        url: `/subjects/${id}`,
+        method: 'DELETE',
+        success: function (response) {
+            $('#deleteSubjectModal').modal('hide');
+            viewSubjects();
+        },
+        error: function (error) {
+            console.error("Error deleting subject", error);
+        }
+    });
+}
+
+// Load tasks similarly
+function viewTasks() { }
