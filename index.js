@@ -11,7 +11,7 @@ app.use(express.static("./public"));
 
 const { addSubject, viewSubjects, editSubject, deleteSubject } = require('./utils/SubjectUtils');
 app.post('/add-subject', addSubject);
-app.get('/view-subjects', viewSubjects);
+app.get('/subjects', viewSubjects);
 app.put('/edit-subject/:id', editSubject);
 app.delete('/delete-subject/:id', deleteSubject);
 

@@ -1,5 +1,5 @@
-const { Subject } = require('../models/Subject');
 const fs = require('fs').promises;
+const { Subject } = require('../models/Subject');
 
 async function readJSON(filename) {
     try {
@@ -23,38 +23,22 @@ async function writeJSON(object, filename) {
     }
 }
 
-async function addSubject(req, res) {
-    try {
-        const name = req.body.name;
-
-        const newSubject = new Subject(name);
-        const updatedSubjects = await writeJSON(newSubject, 'utils/subjects.json');
-        return res.status(201).json(updatedSubjects);
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-}
-
-async function viewSubjects(req, res) {
-    try {
-        const allSubjects = await readJSON('utils/subjects.json');
-        return res.status(201).json(allSubjects);
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-}
-
 async function editSubject(req, res) {
     try {
-        const id = req.params.id;
-        const name = req.body.name;
+        const id = req.params.id; // Get subject ID from the request parameters
+        const name = req.body.name; // Get the updated name from the request body
+        const description = req.body.description; // Get the updated description from the request body
         const allSubjects = await readJSON('utils/subjects.json');
-        var modified = false;
+
+        var modified = false; // Flag to check if a subject was modified
+
         for (var i = 0; i < allSubjects.length; i++) {
-            var curcurrSubject = allSubjects[i];
-            if (curcurrSubject.id == id) {
+            var curentSubject = allSubjects[i];
+            if (curentSubject.id == id) { // Check if the subject ID matches
                 allSubjects[i].name = name;
+                allSubjects[i].description = description;
                 modified = true;
+                break;
             }
         }
         if (modified) {
@@ -74,8 +58,8 @@ async function deleteSubject(req, res) {
         const allSubjects = await readJSON('utils/subjects.json');
         var index = -1;
         for (var i = 0; i < allSubjects.length; i++) {
-            var curcurrSubject = allSubjects[i];
-            if (curcurrSubject.id == id)
+            var curentSubject = allSubjects[i];
+            if (curentSubject.id == id)
                 index = i;
         }
         if (index != -1) {
@@ -90,11 +74,37 @@ async function deleteSubject(req, res) {
     }
 }
 
+async function addSubject(req, res) {
+    try {
+        const { name, description } = req.body;
+
+        // Basic validation
+        if (description.length < 6) {
+            return res.status(400).json({ message: 'Validation error' });
+        }
+
+        const newSubject = new Subject(name, description);
+        const updatedSubjects = await writeJSON(newSubject, 'utils/subjects.json');
+        return res.status(201).json(updatedSubjects);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+async function viewSubjects(req, res) {
+    try {
+        const allSubjects = await readJSON('utils/subjects.json');
+        return res.status(200).json(allSubjects);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
 module.exports = {
     readJSON,
     writeJSON,
-    addSubject,
-    viewSubjects,
     editSubject,
-    deleteSubject
+    deleteSubject,
+    addSubject,
+    viewSubjects
 };
