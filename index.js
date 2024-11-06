@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
 
-const { editTask , deleteTask} = require('./utils/TaskUtil')
+const { editTask , deleteTask, } = require('./utils/TaskUtil')
 app.put('/edit-task/:id', editTask);
 app.delete('/delete-task/:id', deleteTask);
 
