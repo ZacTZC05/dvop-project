@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/subjects.js"></script> <!-- Link to external JavaScript file -->
 </head>
-<body onload="viewTasks(); viewSubjects();">
+<body>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <img src="images/image.png" alt="Logo">
@@ -59,6 +59,7 @@
         </div>
     </div>
 
+    <!-- Modals for Adding, Editing, and Deleting Subjects/Tasks -->
     <!-- Task Modal -->
     <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -90,7 +91,7 @@
         </div>
     </div>
 
-    <!-- Subject Modal -->
+    <!-- Subject Modal for Adding New Subject -->
     <div class="modal fade" id="subjectModal" tabindex="-1" role="dialog" aria-labelledby="subjectModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -120,5 +121,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>
