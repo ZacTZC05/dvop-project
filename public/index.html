@@ -9,9 +9,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+
     <script src="js/task.js"></script>
 </head>
 <body onload="viewTasks(); viewSubjects();">
+
+
+    <script src="task.js"></script>
+    <script src="js/task.js"></script>
+</head>
+<body onload="viewTasks(); viewSubjects();">
+
+    <script src="js/subjects.js"></script> <!-- Link to external JavaScript file -->
+</head>
+<body>
+
+
     <div class="container mt-5">
         <div class="row justify-content-center">
             <img src="images/image.png" alt="Logo">
@@ -30,6 +43,10 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>ID</th>
+
+
+                            <th>Actions</th>
+
                         </tr>
                     </thead>
                     <tbody id="subjectTableContent"></tbody>
@@ -49,6 +66,10 @@
                         <tr>
                             <th>Name</th>
                             <th>Subject ID</th>
+
+
+                            <th>Actions</th>
+
                         </tr>
                     </thead>
                     <tbody id="taskTableContent"></tbody>
@@ -56,6 +77,11 @@
             </div>
         </div>
     </div>
+
+
+
+    <!-- Modals for Adding, Editing, and Deleting Subjects/Tasks -->
+
 
     <!-- Task Modal -->
     <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
@@ -87,6 +113,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Task Edit Modal -->
     <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
@@ -121,6 +148,45 @@
     </div>
 
     <!-- Subject Modal -->
+
+
+    <!-- Task Edit Modal -->
+<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="editName">Task Name</label>
+                        <input type="text" class="form-control" id="editName" placeholder="Enter task name">
+                    </div>
+                    <div class="form-group">
+                        <label for="editLocation">Subject</label>
+                        <input type="text" class="form-control" id="editLocation" placeholder="Enter task subject">
+                    </div>
+                    <p align="right" id="editMessage" class=""></p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="updateButton" onclick="updateTask()">Update Task</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Subject Modal -->
+
+    <!-- Subject Modal for Adding New Subject -->
+
+
     <div class="modal fade" id="subjectModal" tabindex="-1" role="dialog" aria-labelledby="subjectModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -150,5 +216,11 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
 </body>
 </html>

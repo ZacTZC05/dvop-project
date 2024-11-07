@@ -6,17 +6,32 @@ img {
     height: auto;
 }
 
+
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #f9f9f9;
 }
 
 
+
+ 
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+ 
+ 
 h3 {
     text-align: center;
     color: #007bff;
 }
 
 
+
+.modal-footer .btn-primary {
+    background-color: #007bff;
+}
+
+ 
+ 
 .modal-footer .btn-primary {
     background-color: #007bff;
 }
