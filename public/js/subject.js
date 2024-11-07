@@ -1,3 +1,4 @@
+// Function to edit subject data
 function editSubject(data) {
     var selectedSubject = JSON.parse(data);
     document.getElementById("editSubjectName").value = selectedSubject.name;
@@ -6,6 +7,7 @@ function editSubject(data) {
     $('#editSubjectModal').modal('show');
 }
 
+// Function to update subject data
 function updateSubject(id) {
     console.log(id)
     var response = "";
@@ -38,6 +40,7 @@ function updateSubject(id) {
     request.send(JSON.stringify(jsonData));
 }
 
+// Function to delete specific subject
 function deleteSubject(selectedId) {
     var response = "";
 
@@ -56,6 +59,7 @@ function deleteSubject(selectedId) {
     };
     request.send();
 }
+
 $(document).ready(function () {
     viewSubjects();
     viewTasks();
