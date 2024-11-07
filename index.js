@@ -11,6 +11,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
 
+
+const { editTask , deleteTask, } = require('./utils/TaskUtil')
+app.put('/edit-task/:id', editTask);
+app.delete('/delete-task/:id', deleteTask);
+
+
 // Route for adding a task
 app.post('/add-task', addTask);  // Route to handle adding a new task
 
@@ -18,6 +24,7 @@ app.post('/add-task', addTask);  // Route to handle adding a new task
 app.get('/view-tasks', viewTasks);  // Route to handle viewing all tasks
 
 // Serve the main start page
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/public/" + startPage);
 });
@@ -75,4 +82,6 @@ server = app.listen(PORT, function () {
     console.log(`Demo project at: ${baseUrl}`);
 });
 
+
 module.exports = { app, server };
+
