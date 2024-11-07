@@ -23,11 +23,64 @@ async function writeJSON(object, filename) {
     }
 }
 
+async function editSubject(req, res) {
+    try {
+        const id = req.params.id; // Get subject ID from the request parameters
+        const name = req.body.name; // Get the updated name from the request body
+        const description = req.body.description; // Get the updated description from the request body
+        const allSubjects = await readJSON('utils/subjects.json');
+
+        var modified = false; // Flag to check if a subject was modified
+
+        for (var i = 0; i < allSubjects.length; i++) {
+            var curentSubject = allSubjects[i];
+            if (curentSubject.id == id) { // Check if the subject ID matches
+                allSubjects[i].name = name;
+                allSubjects[i].description = description;
+                modified = true;
+                break;
+            }
+        }
+        if (modified) {
+            await fs.writeFile('utils/subjects.json', JSON.stringify(allSubjects), 'utf8');
+            return res.status(201).json({ message: 'Subject modified successfully!' });
+        } else {
+            return res.status(500).json({ message: 'Error occurred, unable to modify!' });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+// Function to delete a subject
+async function deleteSubject(req, res) {
+    try {
+        const id = req.params.id;
+        const allSubjects = await readJSON('utils/subjects.json');
+        var index = -1;
+        for (var i = 0; i < allSubjects.length; i++) {
+            var curentSubject = allSubjects[i];
+            if (curentSubject.id == id)
+                index = i;
+        }
+        if (index != -1) {
+            allSubjects.splice(index, 1);
+            await fs.writeFile('utils/subjects.json', JSON.stringify(allSubjects), 'utf8');
+            return res.status(201).json({ message: 'Subject deleted successfully!' });
+        } else {
+            return res.status(500).json({ message: 'Error occurred, unable to delete!' });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
 async function addSubject(req, res) {
     try {
         const { name, description } = req.body;
 
         // Basic validation
+        if (description.length < 6) {
         if ( description.length < 6) {
             return res.status(400).json({ message: 'Validation error' });
         }
@@ -39,6 +92,8 @@ async function addSubject(req, res) {
         return res.status(500).json({ message: error.message });
     }
 }
+
+// Function to view all subjects
 
 async function viewSubjects(req, res) {
     try {
@@ -52,6 +107,11 @@ async function viewSubjects(req, res) {
 module.exports = {
     readJSON,
     writeJSON,
+    editSubject,
+    deleteSubject,
+    addSubject,
+    viewSubjects
+}
     addSubject,
     viewSubjects
 };

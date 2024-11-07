@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+
+    <script src="js/task.js"></script>
+    <script src="js/subjects.js"></script>
+</head>
+
+<body onload="viewTasks(); viewSubjects();">
+
 
     <script src="js/task.js"></script>
 </head>
@@ -23,19 +31,21 @@
     <script src="js/subjects.js"></script> <!-- Link to external JavaScript file -->
 </head>
 <body>
-
-
     <div class="container mt-5">
         <div class="row justify-content-center">
             <img src="images/image.png" alt="Logo">
         </div>
-        
         <!-- Subjects Section -->
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <h3>Subjects</h3>
                 <div class="d-flex justify-content-end mb-2">
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subjectModal">Add
+                        Subject</button>
+
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subjectModal">Add Subject</button>
+
                 </div>
                 <table class="table table-striped">
                     <thead>
@@ -43,6 +53,9 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>ID</th>
+
+                            <th>Actions</th>
+
 
 
                             <th>Actions</th>
@@ -59,7 +72,11 @@
             <div class="col-md-12">
                 <h3>Tasks</h3>
                 <div class="d-flex justify-content-end mb-2">
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">Add
+                        Task</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">Add Task</button>
+
                 </div>
                 <table class="table table-striped">
                     <thead>
@@ -67,6 +84,7 @@
                             <th>Name</th>
                             <th>Subject ID</th>
 
+                            <th>Actions</th>
 
                             <th>Actions</th>
 
@@ -78,6 +96,11 @@
         </div>
     </div>
 
+    <!-- Modals for Adding, Editing, and Deleting Subjects/Tasks -->
+
+    <!-- Task Modal -->
+    <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel"
+        aria-hidden="true">
 
 
     <!-- Modals for Adding, Editing, and Deleting Subjects/Tasks -->
@@ -85,6 +108,7 @@
 
     <!-- Task Modal -->
     <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
+
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -101,7 +125,11 @@
                         </div>
                         <div class="form-group">
                             <label for="taskSubject">Subject ID</label>
+                            <input type="text" class="form-control" id="taskSubject"
+                                placeholder="Enter subject ID for task">
+
                             <input type="text" class="form-control" id="taskSubject" placeholder="Enter subject ID for task">
+
                         </div>
                         <p align="right" id="taskMessage" class=""></p>
                     </form>
@@ -114,9 +142,13 @@
         </div>
     </div>
 
+    <!-- Task Edit Modal -->
+    <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel"
+        aria-hidden="true">
 
     <!-- Task Edit Modal -->
     <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -139,6 +171,10 @@
                     </form>
                 </div>
                 <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateButton" onclick="updateTask()">Update
+                        Task</button>
                     
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="updateButton" onclick="">Update Task</button>
@@ -149,6 +185,8 @@
 
     <!-- Subject Modal -->
 
+    <div class="modal fade" id="subjectModal" tabindex="-1" role="dialog" aria-labelledby="subjectModalLabel"
+        aria-hidden="true">
 
     <!-- Task Edit Modal -->
 <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
@@ -204,7 +242,12 @@
                         </div>
                         <div class="form-group">
                             <label for="subjectDescription">Description</label>
+
+                            <input type="text" class="form-control" id="subjectDescription"
+                                placeholder="Enter subject description">
+
                             <input type="text" class="form-control" id="subjectDescription" placeholder="Enter subject description">
+
                         </div>
                         <p align="right" id="subjectMessage" class=""></p>
                     </form>
@@ -217,10 +260,9 @@
         </div>
     </div>
 
+</body>
 
-
-
-
+</html>
 
 </body>
 </html>
