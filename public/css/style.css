@@ -1,8 +1,22 @@
-.table-striped-custom tbody tr:nth-of-type(odd) {
-    background-color: #f2f2f2;
-    /* Alternate row color */
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
 }
 
-.card-header {
-    background-color: aliceblue;
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+
+h3 {
+    text-align: center;
+    color: #007bff;
+}
+
+
+.modal-footer .btn-primary {
+    background-color: #007bff;
 }
