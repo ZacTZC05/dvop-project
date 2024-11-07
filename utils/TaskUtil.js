@@ -28,7 +28,7 @@ async function editTask(req, res) {
     try {
         const id = req.params.id;
         const name = req.body.name;
-        const subjectid = req.body.subjectid;
+        const subjectId = req.body.subjectId;
 
         const allTasks = await readJSON('utils/tasks.json');
 
@@ -38,7 +38,7 @@ async function editTask(req, res) {
             let curcurrTask = allTasks[i];
             if (curcurrTask.id == id) {
                 allTasks[i].name = name;
-                allTasks[i].subjectid = subjectid;
+                allTasks[i].subjectId = subjectId;
 
                 modified = true;
             }

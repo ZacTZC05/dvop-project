@@ -3,7 +3,7 @@ function editTask(data) {
     var selectedTask = JSON.parse(data);
 
     document.getElementById("editName").value = selectedTask.name;
-    document.getElementById("editSubject").value = selectedTask.subjectid;
+    document.getElementById("editSubject").value = selectedTask.subjectId;
 
     document.getElementById("updateButton").setAttribute("onclick", 'updateTask("' +selectedTask.id + '")');
 
@@ -16,9 +16,9 @@ function updateTask(id) {
 
     var jsonData = new Object();
     jsonData.name = document.getElementById("editName").value;  // Corrected ID
-    jsonData.subjectid = document.getElementById("editSubject").value;  // Corrected ID
+    jsonData.subjectId = document.getElementById("editSubject").value;  // Corrected ID
 
-    if (jsonData.name == "" || jsonData.subjectid == "") {
+    if (jsonData.name == "" || jsonData.subjectId == "") {
         document.getElementById("editMessage").innerHTML = 'All fields are required!';
         document.getElementById("editMessage").setAttribute("class", "text-danger");
         return;
