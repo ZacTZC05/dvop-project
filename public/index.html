@@ -9,10 +9,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+
     <script src="task.js"></script>
     <script src="js/task.js"></script>
 </head>
 <body onload="viewTasks(); viewSubjects();">
+
+    <script src="js/subjects.js"></script> <!-- Link to external JavaScript file -->
+</head>
+<body>
+
     <div class="container mt-5">
         <div class="row justify-content-center">
             <img src="images/image.png" alt="Logo">
@@ -60,6 +66,9 @@
         </div>
     </div>
 
+
+    <!-- Modals for Adding, Editing, and Deleting Subjects/Tasks -->
+
     <!-- Task Modal -->
     <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -90,6 +99,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Task Edit Modal -->
 <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
@@ -124,6 +134,9 @@
 
 
     <!-- Subject Modal -->
+
+    <!-- Subject Modal for Adding New Subject -->
+
     <div class="modal fade" id="subjectModal" tabindex="-1" role="dialog" aria-labelledby="subjectModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -153,6 +166,7 @@
             </div>
         </div>
     </div>
+
 
     <script>
         // Function to add a new Subject
@@ -232,5 +246,6 @@
             console.log(`Deleting task with ID: ${id}`);
         }
     </script>
+
 </body>
 </html>
