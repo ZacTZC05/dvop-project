@@ -1,7 +1,6 @@
 const fs = require('fs').promises;
 const { Subject } = require('../models/Subject');
 
-// Function to read JSON File 
 async function readJSON(filename) {
     try {
         const data = await fs.readFile(filename, "utf8");
@@ -12,7 +11,6 @@ async function readJSON(filename) {
     }
 }
 
-// Function to write JSON File
 async function writeJSON(object, filename) {
     try {
         const allObjects = await readJSON(filename);
@@ -25,7 +23,6 @@ async function writeJSON(object, filename) {
     }
 }
 
-// Function to edit a subject
 async function editSubject(req, res) {
     try {
         const id = req.params.id; // Get subject ID from the request parameters
@@ -78,13 +75,13 @@ async function deleteSubject(req, res) {
     }
 }
 
-// Function to add a subject
 async function addSubject(req, res) {
     try {
         const { name, description } = req.body;
 
         // Basic validation
         if (description.length < 6) {
+        if ( description.length < 6) {
             return res.status(400).json({ message: 'Validation error' });
         }
 
@@ -97,6 +94,7 @@ async function addSubject(req, res) {
 }
 
 // Function to view all subjects
+
 async function viewSubjects(req, res) {
     try {
         const allSubjects = await readJSON('utils/subjects.json');
@@ -114,3 +112,6 @@ module.exports = {
     addSubject,
     viewSubjects
 }
+    addSubject,
+    viewSubjects
+};
