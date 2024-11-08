@@ -1,87 +1,42 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const { addTask, viewTasks, editTask, deleteTask } = require('./utils/TaskUtil'); // Consolidated imports
+const { addSubject, viewSubjects, editSubject, deleteSubject } = require('./utils/SubjectUtils');
+const { Subject } = require('./models/Subject');
+const { readJSON, writeJSON } = require('./utils/SubjectUtils');
+const fs = require('fs').promises;
+const app = express();
 
-var express = require('express');
-var bodyParser = require("body-parser");
-var { addTask, viewTasks } = require('./utils/TaskUtil');  // Import utility functions
-var app = express();
 const PORT = process.env.PORT || 5050;
-var startPage = "index.html";
+const startPage = 'index.html';
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static("./public"));
-
-
-const { editTask , deleteTask, } = require('./utils/TaskUtil')
-app.put('/edit-task/:id', editTask);
-app.delete('/delete-task/:id', deleteTask);
-
-
-// Route for adding a task
-app.post('/add-task', addTask);  // Route to handle adding a new task
-
-// Route for viewing all tasks
-app.get('/view-tasks', viewTasks);  // Route to handle viewing all tasks
-
-// Serve the main start page
-
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/public/" + startPage);
-});
-
-// Start the server
-var server = app.listen(PORT, function () {
-    const address = server.address();
-    const baseUrl = `http://${address.address === "::" ? 'localhost' : address.address}:${address.port}`;
-    console.log(`Demo project is running at: ${baseUrl}`);
-});
-
-const fs = require('fs').promises;
-const { Subject, Task } = require('./models/Subject');
-const { readJSON, writeJSON } = require('./utils/SubjectUtils');
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-const PORT = process.env.PORT || 5050;
-let startPage = 'index.html';
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(express.static('./public'));
 
-// Route to serve index page
+// Route to serve the main index page
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/' + startPage);
 });
 
-// Endpoint to add a new Subject
-app.post('/subjects', async (req, res) => {
-    try {
-        const { name, description } = req.body;
-        const newSubject = new Subject(name, description);
-        const subjects = await writeJSON(newSubject, 'utils/subjects.json');
-        res.status(201).json(subjects);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
+// Subject Routes
+app.post('/subjects', addSubject);
+app.get('/subjects', viewSubjects);
+app.put('/subjects/:id', editSubject);
+app.delete('/subjects/:id', deleteSubject);
 
-// Endpoint to view all Subjects
-app.get('/subjects', async (req, res) => {
-    try {
-        const subjects = await readJSON('utils/subjects.json');
-        res.status(200).json(subjects);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
+// Task Routes
+app.post('/add-task', addTask);          // Add a new task
+app.get('/view-tasks', viewTasks);        // View all tasks
+app.put('/edit-task/:id', editTask);      // Edit a task
+app.delete('/delete-task/:id', deleteTask); // Delete a task
 
-server = app.listen(PORT, function () {
+// Start the server
+const server = app.listen(PORT, function () {
     const address = server.address();
-    const baseUrl = `http://${address.address == '::' ? 'localhost' : address.address}:${address.port}`;
-    console.log(`Demo project at: ${baseUrl}`);
+    const baseUrl = `http://${address.address === '::' ? 'localhost' : address.address}:${address.port}`;
+    console.log(`Demo project is running at: ${baseUrl}`);
 });
-
 
 module.exports = { app, server };
-
